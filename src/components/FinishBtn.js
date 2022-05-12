@@ -11,7 +11,7 @@ const FinishBtn = ({ onPress }) => {
       onPress={onPress}
     >
       <View style={styles.container}>
-        <Text style={styles.cartText}>Concluir Pedido</Text>
+        <Text style={styles.cartText}>Confirmar Pedido</Text>
       </View>
     </Pressable>
   );

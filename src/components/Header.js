@@ -1,11 +1,11 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import Global from './../constants/globalStyles';
-
+import { user } from '../data/data';
 const Header = () => {
   return (
     <View style={styles.outerContainer}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerTitle}>Olá, Pedro</Text>
+        <Text style={styles.headerTitle}>Olá, {user.nome.split(' ')[0]}</Text>
         <Image
           style={styles.headerImage}
           source={require('./../../assets/waving-hand-pngrepo-com.png')}
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     color: Global.colors.colorDarkLight,
     marginRight: 8,
     marginBottom: 8,
+    textTransform: 'capitalize'
   },
 
   headerMessage: {

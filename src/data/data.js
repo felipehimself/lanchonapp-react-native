@@ -91,7 +91,7 @@ const foods = [
   },
   {
     id: uniqueID(),
-    categoria: 'salada',
+    categoria: 'saladas',
     nome: 'Salada Caesar',
     preco: 18.99,
     avaliacoes: 4.8,
@@ -158,4 +158,15 @@ const notificacoes = [
   },
 ];
 
-export { foods, foodOptions, notificacoes };
+const user = { 
+  nome: 'pedro nogueira',
+  login: 'pedro_nogueira',
+  tipo: 'rua',
+  endereco: 'Arctic Monkeys',
+  numero: 505,
+  bairro:  'Nowhere',
+  municipio: 'Somewhere',
+  uf: 'SW'
+}
+
+export { foods, foodOptions, notificacoes, user };

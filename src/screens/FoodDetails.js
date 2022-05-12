@@ -130,11 +130,11 @@ const styles = StyleSheet.create({
   img: {
     width: '100%',
     height: 260,
-    borderRadius: 18,
+    borderRadius: 12,
   },
 
   pressed: {
-    opacity: 0.6,
+    opacity: 0.8,
   },
 
   outercountContainer: {

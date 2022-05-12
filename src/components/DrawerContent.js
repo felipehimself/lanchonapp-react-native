@@ -1,5 +1,9 @@
 import { View, StyleSheet } from 'react-native';
-import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
+import {
+  DrawerContentScrollView,
+  DrawerItem,
+  DrawerItemList,
+} from '@react-navigation/drawer';
 import {
   Avatar,
   Text,
@@ -10,6 +14,7 @@ import {
   TouchableRipple,
   Switch,
 } from 'react-native-paper';
+import { user } from '../data/data';
 
 import { Ionicons } from '@expo/vector-icons';
 import Global from '../constants/globalStyles';
@@ -27,31 +32,13 @@ const DrawerContent = (props) => {
               size={60}
             />
             <View style={styles.userInfo}>
-              <Title style={styles.userName}>Pedro Nogueira</Title>
-              <Caption style={styles.userNameInfo}>@pedro_nogueira</Caption>
+              <Title style={styles.userName}>{user.nome}</Title>
+              <Caption style={styles.userNameInfo}>@{user.login}</Caption>
             </View>
           </View>
 
-              <DrawerItemList {...props} />
-          {/* <Drawer.Section>
-            <DrawerItem
-              label='Início'
-              labelStyle={{
-                fontSize: 16,
-                marginLeft: -14,
-              }}
-              icon={(color, size) => (
-                <Ionicons
-                  name='home'
-                  size={20}
-                  color={Global.colors.colorDarkGreen}
-                />
-              )}
-              onPress={() => {
-                props.navigation.navigate('home');
-              }}
-            />
-
+          <DrawerItemList {...props} />
+          <Drawer.Section>
             <DrawerItem
               label='Carrinho'
               labelStyle={{
@@ -63,7 +50,6 @@ const DrawerContent = (props) => {
                   name='cart'
                   size={24}
                   color={Global.colors.colorDarkGreen}
-                  style={{ marginLeft: -2 }}
                 />
               )}
               onPress={() => {
@@ -71,54 +57,32 @@ const DrawerContent = (props) => {
                 props.navigation.closeDrawer();
               }}
             />
-
-            <DrawerItem
-              label='Notificações'
-              labelStyle={{
-                fontSize: 16,
-                marginLeft: -14,
-              }}
-              icon={(color, size) => (
-                <Ionicons
-                  name='notifications'
-                  size={22}
-                  color={Global.colors.colorPrimary}
-                  onPress={() => navigation.navigate('Notificacoes')}
-                />
-              )}
-              onPress={() => {
-                props.navigation.navigate('Notificacoes');
-                props.navigation.closeDrawer();
-              }}
-            />
-
-            <DrawerItem
-              label='Favoritos'
-              labelStyle={{
-                fontSize: 16,
-                marginLeft: -14,
-              }}
-              icon={(color, size) => (
-                <Ionicons
-                  name='heart'
-                  size={22}
-                  color={Global.colors.colorLightRed}
-                />
-              )}
-              onPress={() => {
-                props.navigation.navigate('Favoritos');
-                props.navigation.closeDrawer();
-              }}
-            />
-          </Drawer.Section> */}
+          </Drawer.Section>
         </View>
       </DrawerContentScrollView>
       <Drawer.Section>
+
+      <DrawerItem
+          label='Configurações'
+          labelStyle={{
+            fontSize: 16,
+            marginLeft: -16,
+          }}
+          icon={(color, size) => (
+            <Ionicons
+              name='settings'
+              size={20}
+              color={Global.colors.colorDarkGreen}
+            />
+          )}
+        />
+
+
         <DrawerItem
           label='Sair'
           labelStyle={{
             fontSize: 16,
-            marginLeft: -14,
+            marginLeft: -16,
           }}
           icon={(color, size) => (
             <Ionicons
@@ -155,10 +119,12 @@ const styles = StyleSheet.create({
   userName: {
     fontSize: 16,
     color: Global.colors.colorDarkGreen,
+    textTransform: 'capitalize'
   },
 
   userNameInfo: {
-    marginTop: -6,
+    marginTop: -8,
+    
   },
 });
 export default DrawerContent;

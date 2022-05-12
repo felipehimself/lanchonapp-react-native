@@ -4,7 +4,7 @@ import Global from './../constants/globalStyles';
 
 import FinishBtn from './../components/FinishBtn';
 
-const Cart = () => {
+const Cart = ({ navigation }) => {
   const { cart } = useGlobalContext();
 
   return (
@@ -30,23 +30,24 @@ const Cart = () => {
             </View>
           );
         })}
-        
       </ScrollView>
       <View style={styles.finalAmountContainer}>
-          <View style={styles.finalAmountItem}>
-            <Text style={styles.finalPriceTitle}>Valor Final: </Text>
-            <Text style={styles.finalPrice}>
-             R$ {cart.reduce((acc, curr) => acc + curr.quantidade * curr.preco, 0)}
-            </Text>
-          </View>
-          <View style={styles.finalAmountItem}>
-            <Text style={styles.finalPriceTitle}>Quantidade Itens:</Text>
-            <Text style={styles.finalPrice}>
-              {cart.reduce((acc, curr) => acc + curr.quantidade, 0)}
-            </Text>
-          </View>
+        <View style={styles.finalAmountItem}>
+          <Text style={styles.finalPriceTitle}>Valor final: </Text>
+          <Text style={styles.finalPrice}>
+            R${' '}
+            {cart.reduce((acc, curr) => acc + curr.quantidade * curr.preco, 0)}
+          </Text>
         </View>
-      <FinishBtn />
+        <View style={styles.finalAmountItem}>
+          <Text style={styles.finalPriceTitle}>Quantidade de itens:</Text>
+          <Text style={styles.finalPrice}>
+            {cart.reduce((acc, curr) => acc + curr.quantidade, 0)}
+          </Text>
+        </View>
+      </View>
+
+      <FinishBtn onPress={()=> navigation.navigate('Payment')} />
     </View>
   );
 };
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     borderLeftColor: Global.colors.colorPrimary,
-    borderLeftWidth: 1.5
+    borderLeftWidth: 1.5,
   },
 
   imgContainer: {
@@ -101,24 +102,23 @@ const styles = StyleSheet.create({
     left: 20,
     right: 20,
     borderLeftColor: Global.colors.colorPrimary,
-    borderLeftWidth: 1.5
-
+    borderLeftWidth: 1.5,
   },
 
   finalAmountItem: {
-    flexDirection:'row',
-    justifyContent: 'space-between'
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 
   finalPriceTitle: {
     fontSize: 16,
     color: Global.colors.colorDarkGreen,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
 
   finalPrice: {
     fontSize: 16,
-  }
+  },
 });
 
 export default Cart;

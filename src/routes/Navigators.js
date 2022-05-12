@@ -12,6 +12,7 @@ import Favorites from '../screens/Favorites';
 import FoodDetails from '../screens/FoodDetails';
 import Notifications from '../screens/Notifications';
 import Cart from '../screens/Cart';
+
 import CartIcon from '../components/CartIcon';
 
 const Stack = createNativeStackNavigator();
@@ -32,6 +33,7 @@ const DrawerStack = () => {
     <Drawer.Navigator
       drawerContent={(props) => <CustomDrawer {...props} />}
       screenOptions={() => ({
+        drawerStyle: { backgroundColor: '#fff' },
         headerShadowVisible: false,
         drawerActiveBackgroundColor: '#fff',
         drawerActiveTintColor: Global.colors.colorDarkGreen,
@@ -45,7 +47,13 @@ const DrawerStack = () => {
         name='home'
         component={Home}
         options={({ navigation }) => ({
-          drawerIcon: () => <Ionicons name='home' size={20} color={Global.colors.colorDarkGreen} />,
+          drawerIcon: () => (
+            <Ionicons
+              name='home'
+              size={20}
+              color={Global.colors.colorDarkGreen}
+            />
+          ),
           drawerLabel: 'Início',
           headerLeft: () => (
             <Fontisto
@@ -72,9 +80,9 @@ const DrawerStack = () => {
         name='Favoritos'
         component={Favorites}
         options={({ navigation }) => ({
-          drawerIcon: () => (
+          drawerIcon: ({ focused }) => (
             <Ionicons
-              name='cart'
+              name='heart'
               size={24}
               color={Global.colors.colorDarkGreen}
             />
@@ -97,37 +105,15 @@ const DrawerStack = () => {
         name='Notificacoes'
         component={Notifications}
         options={({ navigation }) => ({
-          drawerIcon: () => <Ionicons
-          name='notifications'
-          size={22}
-          color={Global.colors.colorDarkGreen} 
-        />,
-          drawerLabel: 'Notificações',
-          headerTitle: 'Notificações',
-          headerTitleAlign: 'center',
-          headerLeft: () => (
+          drawerIcon: () => (
             <Ionicons
-              name='arrow-back'
-              size={24}
-              color='gray'
-              style={{ marginHorizontal: 10, padding: 10 }}
-              onPress={() => navigation.goBack()}
+              name='notifications'
+              size={22}
+              color={Global.colors.colorDarkGreen}
             />
           ),
-        })}
-      />
-
-      <Drawer.Screen
-        name='Cart'
-        component={Cart}
-        options={({ navigation }) => ({
-          drawerIcon: () =>  <Ionicons
-          name='cart'
-          size={24}
-          color={Global.colors.colorDarkGreen}
-        />,
-          drawerLabel: 'Carrinho',
-          headerTitle: 'Carrinho',
+          drawerLabel: 'Notificações',
+          headerTitle: 'Notificações',
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Ionicons
@@ -171,6 +157,14 @@ const AppStack = () => {
         options={{
           headerTitle: '',
           headerRight: () => <CartIcon />,
+        }}
+      />
+
+      <Stack.Screen
+        name='Cart'
+        component={Cart}
+        options={{
+          headerTitle: 'Carrinho',
         }}
       />
     </Stack.Navigator>
